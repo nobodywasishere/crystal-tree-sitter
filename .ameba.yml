@@ -1,0 +1,8 @@
+Excluded:
+  - src/ext/
+
+Layout/LineLength:
+  Enabled: true
+  Description: Disallows lines longer than `MaxLength` number of symbols
+  MaxLength: 100
+  Severity: Error

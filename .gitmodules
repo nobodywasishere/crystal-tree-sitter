@@ -1,0 +1,8 @@
+[submodule "src/ext/tree_sitter"]
+	path = src/ext/tree_sitter
+	url = https://github.com/tree-sitter/tree-sitter
+	branch = release-0.24
+[submodule "src/ext/tree_sitter_crystal"]
+	path = src/ext/tree_sitter_crystal
+	url = https://github.com/crystal-lang-tools/tree-sitter-crystal
+	branch = main

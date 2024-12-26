@@ -1,0 +1,9 @@
+name: tree-sitter
+version: 0.1.0
+
+authors:
+  - Margret Riegert <margret@eowyn.net>
+
+crystal: ">= 1.14.0"
+
+license: MIT
