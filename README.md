@@ -8,7 +8,7 @@ TODO: Write a description here
 
    ```yaml
    dependencies:
-     crystal-tree-sitter:
+     tree-sitter:
        github: nobodywasishere/crystal-tree-sitter
    ```
 
@@ -17,7 +17,7 @@ TODO: Write a description here
 ## Usage
 
 ```crystal
-require "crystal-tree-sitter"
+require "tree-sitter"
 ```
 
 TODO: Write usage instructions here
