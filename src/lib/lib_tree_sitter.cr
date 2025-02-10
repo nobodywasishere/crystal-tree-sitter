@@ -160,7 +160,7 @@ lib LibTreeSitter
   # will not be assigned, and this function will return `false`. On success,
   # this function returns `true`
   fun ts_parser_set_included_ranges(
-    self : TSParser*, ranges : TSRange*, count : LibC::UInt32T
+    self : TSParser*, ranges : TSRange*, count : LibC::UInt32T,
   ) : Bool
 
   # Get the ranges of text that the parser will include when parsing.
@@ -218,7 +218,7 @@ lib LibTreeSitter
   # above. The second two parameters indicate the location of the buffer and its
   # length in bytes.
   fun ts_parser_parse_string(
-    self : TSParser*, old_tree : TSTree*, string : LibC::Char*, length : LibC::UInt32T
+    self : TSParser*, old_tree : TSTree*, string : LibC::Char*, length : LibC::UInt32T,
   ) : TSTree*
 
   # Use the parser to parse some source code stored in one contiguous buffer with
@@ -227,7 +227,7 @@ lib LibTreeSitter
   # the text is encoded as UTF8 or UTF16.
   fun ts_parser_parse_string_encoding(
     self : TSParser*, old_tree : TSTree*,
-    string : LibC::Char*, length : LibC::UInt32T, encoding : TSInputEncoding
+    string : LibC::Char*, length : LibC::UInt32T, encoding : TSInputEncoding,
   )
 
   # Instruct the parser to start the next parse from the beginning.
@@ -292,7 +292,7 @@ lib LibTreeSitter
   # Get the root node of the syntax tree, but with its position
   # shifted forward by the given offset.
   fun ts_tree_root_node_with_offset(
-    self : TSTree*, offset_bytes : LibC::UInt32T, offset_extent : TSPoint
+    self : TSTree*, offset_bytes : LibC::UInt32T, offset_extent : TSPoint,
   ) : TSNode
 
   # Get the language that was used to parse the syntax tree.
@@ -323,7 +323,7 @@ lib LibTreeSitter
   # for freeing it using `free`. The length of the array will be written to the
   # given `length` pointer.
   fun ts_tree_get_changed_ranges(
-    old_tree : TSTree*, new_tree : TSTree*, length : LibC::UInt32T*
+    old_tree : TSTree*, new_tree : TSTree*, length : LibC::UInt32T*,
   ) : TSRange*
 
   # Write a DOT graph describing the syntax tree to the given file.
@@ -429,7 +429,7 @@ lib LibTreeSitter
   # Get the field name for node's named child at the given index, where zero
   # represents the first named child. Returns NULL, if no field is found.
   fun ts_node_field_name_for_named_child(
-    self : TSNode, named_child_index : LibC::UInt32T
+    self : TSNode, named_child_index : LibC::UInt32T,
   ) : LibC::Char*
 
   # Get the node's number of children.
@@ -447,7 +447,7 @@ lib LibTreeSitter
 
   # Get the node's child with the given field name.
   fun ts_node_child_by_field_name(
-    self : TSNode, name : LibC::Char*, name_length : LibC::UInt32T
+    self : TSNode, name : LibC::Char*, name_length : LibC::UInt32T,
   ) : TSNode
 
   # Get the node's child with the given numerical field id.
@@ -472,19 +472,19 @@ lib LibTreeSitter
   # Get the smallest node within this node that spans the given range of bytes
   # or (row, column) positions.
   fun ts_node_descendant_for_byte_range(
-    self : TSNode, start : LibC::UInt32T, end : LibC::UInt32T
+    self : TSNode, start : LibC::UInt32T, end : LibC::UInt32T,
   ) : TSNode
   fun ts_node_descendant_for_point_range(
-    self : TSNode, start : TSPoint, end : TSPoint
+    self : TSNode, start : TSPoint, end : TSPoint,
   ) : TSNode
 
   # Get the smallest named node within this node that spans the given range of
   # bytes or (row, column) positions.
   fun ts_node_named_descendant_for_byte_range(
-    self : TSNode, start : LibC::UInt32T, end : LibC::UInt32T
+    self : TSNode, start : LibC::UInt32T, end : LibC::UInt32T,
   ) : TSNode
   fun ts_node_named_descendant_for_point_range(
-    self : TSNode, start : TSPoint, end : TSPoint
+    self : TSNode, start : TSPoint, end : TSPoint,
   ) : TSNode
 
   # Edit the node to keep it in-sync with source code that has been edited.
@@ -579,7 +579,7 @@ lib LibTreeSitter
   # the original node that the cursor was constructed with, where
   # zero represents the original node itself.
   fun ts_tree_cursor_goto_descendant(
-    self : TSTreeCursor*, goal_descendant_index : LibC::UInt32T
+    self : TSTreeCursor*, goal_descendant_index : LibC::UInt32T,
   ) : Void
 
   # Get the index of the cursor's current node out of all of the
@@ -596,10 +596,10 @@ lib LibTreeSitter
   # This returns the index of the child node if one was found, and returns -1
   # if no such child was found.
   fun ts_tree_cursor_goto_first_child_for_byte(
-    self : TSTreeCursor*, start : LibC::UInt32T, end : LibC::UInt32T
+    self : TSTreeCursor*, start : LibC::UInt32T, end : LibC::UInt32T,
   ) : LibC::UInt64T
   fun ts_tree_cursor_goto_first_child_for_point(
-    self : TSTreeCursor*, start : TSPoint, end : TSPoint
+    self : TSTreeCursor*, start : TSPoint, end : TSPoint,
   ) : LibC::UInt64T
 
   fun ts_tree_cursor_copy(TSTreeCursor*) : TSTreeCursor
@@ -620,7 +620,7 @@ lib LibTreeSitter
     source : LibC::Char*,
     source_len : LibC::UInt32T,
     error_offset : LibC::UInt32T*,
-    error_type : TSQueryError*
+    error_type : TSQueryError*,
   ) : TSQuery*
 
   # Delete a query, freeing all of the memory that it used.
@@ -636,7 +636,7 @@ lib LibTreeSitter
   # This can be useful when combining queries by concatenating their source
   # code strings.
   fun ts_query_start_byte_for_pattern(
-    self : TSQuery*, pattern_index : LibC::UInt32T
+    self : TSQuery*, pattern_index : LibC::UInt32T,
   ) : LibC::UInt32T
 
   # Get the byte offset where the given pattern ends in the query's source.
@@ -644,7 +644,7 @@ lib LibTreeSitter
   # This can be useful when combining queries by concatenating their source
   # code strings.
   fun ts_query_end_byte_for_pattern(
-    self : TSQuery*, pattern_index : LibC::UInt32T
+    self : TSQuery*, pattern_index : LibC::UInt32T,
   ) : LibC::UInt32T
 
   # Get all of the predicates for the given pattern in the query.
@@ -664,7 +664,7 @@ lib LibTreeSitter
   fun ts_query_predicates_for_pattern(
     self : TSQuery*,
     pattern_index : LibC::UInt32T,
-    step_count : LibC::UInt32T*
+    step_count : LibC::UInt32T*,
   ) : TSQueryPredicateStep*
 
   # Check if the given pattern in the query has a single root node.
@@ -686,17 +686,17 @@ lib LibTreeSitter
   # query's string literals. Each capture and string is associated with a
   # numeric id based on the order that it appeared in the query's source.
   fun ts_query_capture_name_for_id(
-    self : TSQuery*, index : LibC::UInt32T, length : LibC::UInt32T*
+    self : TSQuery*, index : LibC::UInt32T, length : LibC::UInt32T*,
   ) : LibC::Char*
 
   # Get the quantifier of the query's captures. Each capture is * associated
   # with a numeric id based on the order that it appeared in the query's source.
   fun ts_query_capture_quantifier_for_id(
-    self : TSQuery*, pattern_index : LibC::UInt32T, capture_index : LibC::UInt32T
+    self : TSQuery*, pattern_index : LibC::UInt32T, capture_index : LibC::UInt32T,
   ) : TSQuantifier
 
   fun ts_query_string_value_for_id(
-    self : TSQuery*, index : LibC::UInt32T, length : LibC::UInt32T*
+    self : TSQuery*, index : LibC::UInt32T, length : LibC::UInt32T*,
   ) : LibC::Char*
 
   # Disable a certain capture within a query.
@@ -759,7 +759,7 @@ lib LibTreeSitter
   # If query execution takes longer than this, it will halt early, returning NULL.
   # See [`ts_query_cursor_next_match`] or [`ts_query_cursor_next_capture`] for more information.
   fun ts_query_cursor_set_timeout_micros(
-    self : TSQueryCursor*, timeout_micros : LibC::UInt64T
+    self : TSQueryCursor*, timeout_micros : LibC::UInt64T,
   ) : Void
 
   # Get the duration in microseconds that query execution is allowed to take.
@@ -770,10 +770,10 @@ lib LibTreeSitter
   # Set the range of bytes or (row, column) positions in which the query
   # will be executed.
   fun ts_query_cursor_set_byte_range(
-    self : TSQueryCursor*, start_byte : LibC::UInt32T, end_byte : LibC::UInt32T
+    self : TSQueryCursor*, start_byte : LibC::UInt32T, end_byte : LibC::UInt32T,
   ) : Void
   fun ts_query_cursor_set_point_range(
-    self : TSQueryCursor*, start_point : TSPoint, end_point : TSPoint
+    self : TSQueryCursor*, start_point : TSPoint, end_point : TSPoint,
   ) : Void
 
   # Advance to the next match of the currently running query.
@@ -788,7 +788,7 @@ lib LibTreeSitter
   # If there is a capture, write its match to `*match` and its index within
   # the matche's capture list to `*capture_index`. Otherwise, return `false`.
   fun ts_query_cursor_next_capture(
-    self : TSQueryCursor*, match : TSQueryMatch*, capture_index : LibC::UInt32T*
+    self : TSQueryCursor*, match : TSQueryMatch*, capture_index : LibC::UInt32T*,
   ) : Bool
 
   # Set the maximum start depth for a query cursor.
@@ -804,7 +804,7 @@ lib LibTreeSitter
   #
   # Set to `UINT32_MAX` to remove the maximum start depth.
   fun ts_query_cursor_set_max_start_depth(
-    self : TSQueryCursor*, max_start_depth : LibC::UInt32T
+    self : TSQueryCursor*, max_start_depth : LibC::UInt32T,
   ) : Void
 
   # Language
@@ -827,7 +827,7 @@ lib LibTreeSitter
 
   # Get the numerical id for the given node type string.
   fun ts_language_symbol_for_name(
-    self : TSLanguage*, string : LibC::Char*, length : LibC::UInt32T, is_named : Bool
+    self : TSLanguage*, string : LibC::Char*, length : LibC::UInt32T, is_named : Bool,
   ) : TSSymbol
 
   # Get the number of distinct field names in the language.
@@ -838,7 +838,7 @@ lib LibTreeSitter
 
   # Get the numerical id for the given field name string.
   fun ts_language_field_id_for_name(
-    self : TSLanguage*, name : LibC::Char*, name_length : LibC::UInt32T
+    self : TSLanguage*, name : LibC::Char*, name_length : LibC::UInt32T,
   ) : TSFieldId
 
   # Check whether the given node type id belongs to named nodes, anonymous nodes,
@@ -890,7 +890,7 @@ lib LibTreeSitter
   # This returns `true` if the language was set successfully and `false`
   # otherwise.
   fun ts_lookahead_iterator_reset(
-    self : TSLookaheadIterator*, language : TSLanguage*, state : TSStateId
+    self : TSLookaheadIterator*, language : TSLanguage*, state : TSStateId,
   ) : Bool
 
   # Get the current language of the lookahead iterator.
